@@ -29,8 +29,10 @@ The user supplied the course assignment PDF and local project paths. For the cho
 
 - Added README/map, acceptance criteria, pattern decision, AI risk review, risk register, readiness audit, background-agent safeguards, conditional release decision, AI reflection draft, and this record.
 - Changed `src/lib/checker.ts` to reject starts at or before the current minute; added an AC1 equality regression test.
+- Added finite-number and day-bound validation at the checker boundary, with regression tests for `NaN` and out-of-day times.
+- Removed the Vite `optimizeDeps.exclude` entry for `lucide-react` after the owner reported a Firefox module-loading error; the owner restarted Vite with forced dependency refresh and confirmed the page rendered.
 - Expanded `AGENTS.md` with allowed local checks, prohibited actions, and human review gates.
 - Baseline: 9/9 tests passed; typecheck, lint, and production build exited 0.
-- After mitigation: 10/10 tests passed; typecheck, lint, and production build exited 0. Vite emitted an outdated Browserslist database warning.
+- Current working copy: 12/12 tests passed; typecheck, lint, and production build exited 0. Vite emitted an outdated Browserslist database warning.
 - Git commit metadata and branch were verified against the user-provided GitHub repository. The user explicitly approved using their email as commit metadata.
-- Visual UI screenshot remains outstanding: the local browser attempt was stopped by the computer-use URL policy limitation; no visual result is claimed.
+- The owner manually opened the local app and supplied five evidence screenshots. They are included in `docs/evidence/` and described in `docs/final-report.md`.

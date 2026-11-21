@@ -23,8 +23,11 @@ export function checkAvailability({
 }: CheckParams): Decision {
   const reasons: string[] = [];
 
+  // Reject malformed values before comparisons: comparisons with NaN are false.
+  if (![start, end, currentMinutes].every(Number.isFinite)) {
+    reasons.push('Time values must be valid numbers. Please choose a valid time.');
   // AC1 — validate time range and require a start strictly after current time
-  if (start < 0 || end > DAY_MINUTES) {
+  } else if (start < 0 || start >= DAY_MINUTES || end <= 0 || end > DAY_MINUTES || currentMinutes < 0 || currentMinutes >= DAY_MINUTES) {
     reasons.push('Times must be between 00:00 and 24:00. Please choose a time within that range.');
   } else if (start >= end) {
     reasons.push('Start time must be earlier than end time. Please pick a start time that comes before the end time.');

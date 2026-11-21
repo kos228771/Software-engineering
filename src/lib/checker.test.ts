@@ -34,6 +34,16 @@ describe('checkAvailability', () => {
     expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('must be after the current time (09:00)');
   });
 
+  it('rejects non-finite time values', () => {
+    const d = checkAvailability({ room, start: Number.NaN, end: 10 * 60, currentMinutes: NOW, bookings: [] });
+    expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('valid numbers');
+  });
+
+  it('rejects times outside the day at the checker boundary', () => {
+    const d = checkAvailability({ room, start: 25 * 60, end: 26 * 60, currentMinutes: NOW, bookings: [] });
+    expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('between 00:00 and 24:00');
+  });
+
   it('AC2: rejects a duration over 120 minutes', () => {
     const d = checkAvailability({ room, start: 10 * 60, end: 12 * 60 + 30, currentMinutes: NOW, bookings });
     expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('150 min');

@@ -36,6 +36,10 @@ npm run build
 
 The criteria and evidence are in [`docs/acceptance-criteria.md`](docs/acceptance-criteria.md). The project owner clarified that a slot must start strictly after the current time; the checker and regression test enforce that boundary.
 
+## Assignment report
+
+The final report and review records are in [`docs/final-report.md`](docs/final-report.md). The project owner's UI evidence screenshots are in `docs/evidence/`.
+
 ## Scope and safety
 
 Use only the fictional fixture data. This project is an availability checker prototype: do not add login, backend integration, or real booking creation without an explicit scope change.
