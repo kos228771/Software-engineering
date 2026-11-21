@@ -34,7 +34,7 @@ npm run build
 
 ## Acceptance criteria (baseline)
 
-The detailed baseline criteria and evidence are in [`docs/acceptance-criteria.md`](docs/acceptance-criteria.md). Before changing behavior, resolve the noted mismatch between the current-time helper text and the exact boundary accepted by the checker.
+The criteria and evidence are in [`docs/acceptance-criteria.md`](docs/acceptance-criteria.md). The project owner clarified that a slot must start strictly after the current time; the checker and regression test enforce that boundary.
 
 ## Scope and safety
 

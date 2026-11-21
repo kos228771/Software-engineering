@@ -23,12 +23,12 @@ export function checkAvailability({
 }: CheckParams): Decision {
   const reasons: string[] = [];
 
-  // AC1 — validate time range and "start is after current time"
+  // AC1 — validate time range and require a start strictly after current time
   if (start < 0 || end > DAY_MINUTES) {
     reasons.push('Times must be between 00:00 and 24:00. Please choose a time within that range.');
   } else if (start >= end) {
     reasons.push('Start time must be earlier than end time. Please pick a start time that comes before the end time.');
-  } else if (start < currentMinutes) {
+  } else if (start <= currentMinutes) {
     reasons.push(`Start time must be after the current time (${minutesToTime(currentMinutes)}). You cannot book a slot that has already begun.`);
   }
 

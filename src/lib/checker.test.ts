@@ -29,6 +29,11 @@ describe('checkAvailability', () => {
     expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('must be after the current time (09:00)');
   });
 
+  it('AC1: rejects a start exactly at the current time', () => {
+    const d = checkAvailability({ room, start: NOW, end: 10 * 60, currentMinutes: NOW, bookings: [] });
+    expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('must be after the current time (09:00)');
+  });
+
   it('AC2: rejects a duration over 120 minutes', () => {
     const d = checkAvailability({ room, start: 10 * 60, end: 12 * 60 + 30, currentMinutes: NOW, bookings });
     expect(d.kind === 'unavailable' && d.reasons.join(' ')).toContain('150 min');
